@@ -2,7 +2,7 @@
 <configuration>
 	<springProperty scope="context" name="LOG_HOME" source="log.home" defaultValue="/data/dubbo/logs/springboot-example"/>
 	<springProperty scope="context" name="LOG_ROOT_LEVEL" source="log.level" defaultValue="INFO"/>
-	<property name="LOG_PREFIX" value="exampleweb" />
+	<property name="LOG_PREFIX" value="exampleservice" />
 	<property name="LOG_CHARSET" value="UTF-8" />
 	<property name="LOG_DIR" value="${LOG_HOME}/%d{yyyyMMdd}" />
 	<property name="LOG_MSG" value="- | [%X{requestId}] | [%d{yyyyMMdd HH:mm:ss.SSS}] | [%level]|[${HOSTNAME}] | [%thread]|[%logger{36}] | %msg|%n "/>
@@ -55,7 +55,7 @@
 	<logger name="org.apache.zookeeper"    level="ERROR"  />
  	<logger name="com.alibaba.dubbo.monitor" level="ERROR"/>
 	<logger name="com.alibaba.dubbo.remoting" level="ERROR" />
-	<logger name="com.it" level="DEBUG" />
+	<logger name="com.it" level="info" />
 	<root level="${LOG_ROOT_LEVEL}">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE_ALL" />

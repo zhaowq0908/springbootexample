@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <dubbo:application name="exampleprojectservice"/>
+    <dubbo:registry protocol="zookeeper" address="${zookeeper.connect}" file="${dubbo.cache}"/>
+    <dubbo:protocol name="dubbo" port="${dubbo.port}" threadpool="${dubbo.protocol.threadpool}"
+                    threads="${dubbo.protocol.threads}"/>
+    <dubbo:provider connections="${dubbo.provider.connections}" timeout="${dubbo.provider.timeout}"
+                    retries="${dubbo.provider.retries}" version="${dubbo.provider.version}" filter="dubboLogFilter"/>
+    <dubbo:consumer check="false" version="${dubbo.provider.version}"/>
+    <dubbo:monitor protocol="registry"/>
+</beans>
