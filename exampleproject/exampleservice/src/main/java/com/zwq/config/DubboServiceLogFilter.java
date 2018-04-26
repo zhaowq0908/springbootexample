@@ -28,38 +28,33 @@ public class DubboServiceLogFilter extends BaseLog implements Filter {
 
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = invoker.getUrl();
-                    long startTime = System.currentTimeMillis();
-                    String methodName = invocation.getMethodName();
-                    logger.info("访问方法名:{}", methodName);
-                    String name = invocation.getInvoker().getInterface().getName();
-                    logger.info("访问接口名:{}", name);
-                    String clientIp = RpcContext.getContext().getRemoteHost();
-                    logger.info("访问ip为:{}", clientIp);
-                    StringBuilder param = new StringBuilder();
-                    Object[] arguments = invocation.getArguments();
-                    // StringUtils.toArgumentString(invocation.getArguments());
-                    if (!Arrays.isNullOrEmpty(arguments)) {
-                        for (int i = 0; i < arguments.length; i++) {
-                            param.append(JSON.toJSONString(arguments[i]));
-                            if (i != arguments.length - 1) {
-                                param.append(" | ");
-                            }
-                        }
+        long startTime = System.currentTimeMillis();
+        try {
+            URL url = invoker.getUrl();
+            String methodName = invocation.getMethodName();
+            logger.info("访问方法名:{}", methodName);
+            String name = invocation.getInvoker().getInterface().getName();
+            logger.info("访问接口名:{}", name);
+            String clientIp = RpcContext.getContext().getRemoteHost();
+            logger.info("访问ip为:{}", clientIp);
+            StringBuilder param = new StringBuilder();
+            Object[] arguments = invocation.getArguments();
+            // StringUtils.toArgumentString(invocation.getArguments());
+            if (!Arrays.isNullOrEmpty(arguments)) {
+                for (int i = 0; i < arguments.length; i++) {
+                    param.append(JSON.toJSONString(arguments[i]));
+                    if (i != arguments.length - 1) {
+                        param.append(" | ");
                     }
-                    logger.info("入参:{}", JSON.toJSONString(param));
-                    Result invoke = invoker.invoke(invocation);
-                    Object value = invoke.getValue();
-                    logger.info("出参:{},耗时{}毫秒", JSON.toJSONString(value), System.currentTimeMillis() - startTime);
-                } catch (Exception e) {
-                    logger.error("dubbo filter error");
                 }
             }
-        });
-        return invoker.invoke(invocation);
+            logger.info("入参:{}", JSON.toJSONString(param));
+        } catch (Exception e) {
+            logger.error("dubbo filter error");
+        }
+        Result invoke = invoker.invoke(invocation);
+        Object value = invoke.getValue();
+        logger.info("出参:{},耗时{}毫秒", JSON.toJSONString(value), System.currentTimeMillis() - startTime);
+        return invoke;
     }
 }
