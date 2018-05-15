@@ -1,5 +1,5 @@
-import com.zwq.common.util.BaseLog;
-import com.zwq.run.StartRun;
+import com.it.common.util.BaseLog;
+import com.it.run.StartRun;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
