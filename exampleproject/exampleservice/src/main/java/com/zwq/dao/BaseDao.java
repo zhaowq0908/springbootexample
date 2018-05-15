@@ -1,4 +1,4 @@
-package com.zwq.config.base;
+package com.zwq.dao;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
