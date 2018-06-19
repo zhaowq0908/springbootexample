@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>example-project</artifactId>
-        <groupId>com.zwq</groupId>
+        <groupId>com.it</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>example-service-api</artifactId>
@@ -34,7 +34,7 @@
         <snapshotRepository>
             <id>snapshots</id>
             <name>Nexus Snapshot Repository</name>
-            <url>http://10.4.89.197:8083/nexus/content/repositories/snapshots/</url>
+            <!--repositories url-->
         </snapshotRepository>
     </distributionManagement>
 </project>

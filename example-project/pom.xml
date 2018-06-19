@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zwq</groupId>
+    <groupId>com.it</groupId>
     <artifactId>example-project</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -16,8 +16,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modules>
-        <module>exampleservice</module>
-        <module>exampleserviceapi</module>
+        <module>example-service</module>
+        <module>example-service-api</module>
     </modules>
     <dependencies>
         <dependency>
@@ -53,7 +53,7 @@
         <snapshotRepository>
             <id>snapshots</id>
             <name>Nexus Snapshot Repository</name>
-            <url>http://10.4.89.197:8083/nexus/content/repositories/snapshots/</url>
+            <!--repositories url-->
         </snapshotRepository>
     </distributionManagement>
 </project>
